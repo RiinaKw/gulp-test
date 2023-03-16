@@ -101,6 +101,7 @@ const scssCompile = () => {
             outputStyle: 'expanded',
           }),
       ))
+      // ベンダープレフィックス
       .pipe(autoprefixer())
       // ***.css.map を出力
       .pipe(sourcemaps.write('./maps'))
