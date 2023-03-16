@@ -69,9 +69,13 @@ exports.serve = () => {
         }
     })
 
-    gulp.watch('src/**/*', { usePolling: true })
+    gulp.watch('src/pug/**/*', { usePolling: true })
         .on('change', gulp.series(
             pugCompile,
+            () => {browserSync.reload()}
+        ))
+    gulp.watch('src/scss/**/*', { usePolling: true })
+        .on('change', gulp.series(
             scssCompile,
             () => {browserSync.reload()}
         ))
