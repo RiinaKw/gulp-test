@@ -1,6 +1,6 @@
 
 // ブレークポイントの配列
-$breakpoint_list: (
+$breakpoint-list: (
     "xs": 0,
     "sm": 480,
     "md": 768,
@@ -10,12 +10,13 @@ $breakpoint_list: (
 
 // ブレークポイントの数値を取得
 @function breakpoint($breakpoint) {
-  @return map-get($breakpoint_list, $breakpoint);
+    @return map-get($breakpoint-list, $breakpoint);
 }
 
 // メディアクエリ
 @mixin query($breakpoint: md) {
     $query: "screen and (min-width: " + breakpoint($breakpoint) + "px)";
+
     @media #{$query} {
         @content;
     }
@@ -30,9 +31,11 @@ $breakpoint_list: (
 @function sm($value, $sign:1) {
     @return vw(sm, $value, $sign);
 }
+
 @function md($value, $sign:1) {
     @return vw(md, $value, $sign);
 }
+
 @function lg($value, $sign:1) {
     @return vw(lg, $value, $sign);
 }
