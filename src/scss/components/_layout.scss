@@ -1,0 +1,39 @@
+@use "base/media";
+
+.Layout {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 200px;
+    grid-template-rows: 4rem 1fr 4rem;
+
+    &__Header {
+        grid-column: 1 / 3;
+        background: pink;
+        line-height: 4rem;
+    }
+
+    &__Footer {
+        grid-column: 1 / 3;
+        background: lightgreen;
+        text-align: center;
+        line-height: 4rem;
+    }
+
+    &__Main {
+        background: lightblue;
+        grid-column: 1 / 3;
+
+        @include media.query(md) {
+            grid-column: 1 / 2;
+        }
+    }
+
+    &__SideBar {
+        grid-column: 1 / 3;
+        background: lightgray;
+
+        @include media.query(md) {
+            grid-column: 2 / 3;
+        }
+    }
+}

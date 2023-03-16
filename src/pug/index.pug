@@ -15,10 +15,10 @@ html(lang="ja")
         )
         script(src="js/console.min.js")
         link(rel="stylesheet" href="css/console.css")
-    body
-        header
+    body.Layout
+        header.Layout__Header
             h1 #{title}
-        main
+        main.Layout__Main
             .container
                 article
                     h2 article 1
@@ -29,5 +29,5 @@ html(lang="ja")
                 article
                     h2 article 3
                     .content this is the 3rd article.
-        aside aside
-        footer footer
+        aside.Layout__SideBar aside
+        footer.Layout__Footer footer
