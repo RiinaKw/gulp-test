@@ -23,6 +23,7 @@
   "homepage": "https://github.com/RiinaKw/gulp-test#readme",
   "devDependencies": {
     "browser-sync": "^2.28.3",
+    "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",
     "gulp-if": "^3.0.0",
