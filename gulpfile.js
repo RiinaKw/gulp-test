@@ -10,6 +10,10 @@ const pug = require("gulp-pug")
 // 開発サーバ
 const browserSync = require('browser-sync')
 
+// js
+const uglify = require("gulp-uglify")   // js の圧縮
+const rename = require("gulp-rename")   // ファイルのリネーム
+
 // その他
 const debug = require('gulp-debug')
 const plumber = require("gulp-plumber")
@@ -53,8 +57,26 @@ const scssCompile = () => {
         .pipe(debug({ title: 'scss :' }))
 }
 
+/**
+ * js を圧縮
+ */
+const jsMinify = () => {
+    return gulp.src('src/js/**/*.js')
+        // 圧縮
+        .pipe(uglify())
+        // ***.min.js にリネーム
+        .pipe(rename({
+            extname: '.min.js'
+        }))
+        // js を出力
+        .pipe(gulp.dest('dist/js'))
+        // ログ出力
+        .pipe(debug({ title: 'js :' }))
+}
+
 exports.pug = pugCompile
 exports.scss = scssCompile
+exports.js = jsMinify
 
 exports.serve = () => {
     browserSync.init({
@@ -79,6 +101,11 @@ exports.serve = () => {
             scssCompile,
             () => {browserSync.reload()}
         ))
+    gulp.watch('src/js/**/*', { usePolling: true })
+        .on('change', gulp.series(
+            jsMinify,
+            () => {browserSync.reload()}
+        ))
 }
 
-exports.default = gulp.parallel(pugCompile, scssCompile)
+exports.default = gulp.parallel(pugCompile, scssCompile, jsMinify)
