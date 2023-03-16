@@ -1,22 +1,22 @@
 const gulp = require('gulp')
 
-// sass
-const sass = require('gulp-sass')(require('sass'))
-const sourcemaps = require('gulp-sourcemaps')
-
 // pug
 const pug = require('gulp-pug')
 
-// 開発サーバ
-const browserSync = require('browser-sync')
+// sass
+const sass = require('gulp-sass')(require('sass'))  // sass コンパイラ
+const sourcemaps = require('gulp-sourcemaps')       // ***.css.map
 
 // js
 const uglify = require('gulp-uglify')   // js の圧縮
 const rename = require('gulp-rename')   // ファイルのリネーム
 
+// 開発サーバ
+const browserSync = require('browser-sync')
+
 // その他
-const debug = require('gulp-debug')
-const plumber = require('gulp-plumber')
+const debug = require('gulp-debug')     // デバッグログ
+const plumber = require('gulp-plumber') // デスクトップ通知
 const notify = require('gulp-notify')
 
 // パスの設定
