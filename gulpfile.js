@@ -16,7 +16,7 @@ const browserSync = require('browser-sync')
 
 // その他
 const minimist = require('minimist')    // 引数解析
-var gulpif = require('gulp-if')         // 条件分岐を簡単にしてくれるやつ
+const gulpif = require('gulp-if')       // 条件分岐を簡単にしてくれるやつ
 const debug = require('gulp-debug')     // デバッグログ
 const plumber = require('gulp-plumber') // デスクトップ通知
 const notify = require('gulp-notify')
