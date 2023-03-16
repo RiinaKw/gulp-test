@@ -8,8 +8,9 @@ const sass = require('gulp-sass')(require('sass'))  // sass コンパイラ
 const sourcemaps = require('gulp-sourcemaps')       // ***.css.map
 
 // js
-const uglify = require('gulp-uglify')   // js の圧縮
-const rename = require('gulp-rename')   // ファイルのリネーム
+const ts = require('gulp-typescript') // TypeScript
+const uglify = require('gulp-uglify') // js の圧縮
+const rename = require('gulp-rename') // ファイルのリネーム
 
 // 開発サーバ
 const browserSync = require('browser-sync')
@@ -26,7 +27,7 @@ const paths = {
     'src': {
         pug: 'src/pug/**/*.pug',
         scss: 'src/scss/**/*.{scss,css}',
-        js: 'src/js/**/*.js',
+        js: 'src/js/**/*.{ts,js}',
     },
     'dist': {
         pug: 'dist',
@@ -108,6 +109,11 @@ const jsMinify = () => {
     return gulp.src(paths.src.js)
         // エラーが起きたときにデスクトップへ通知する
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
+        // TypeScript をコンパイル
+        .pipe(ts({
+            esModuleInterop: true,
+            module: 'es2015'
+        }))
         // 本番環境の場合は圧縮
         .pipe(gulpif(
             options.env === 'production',

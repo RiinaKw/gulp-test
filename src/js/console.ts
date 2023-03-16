@@ -1,3 +1,4 @@
+
 jQuery(($) => {
   const $console = $('<div>').attr('id', 'js-console').appendTo('body');
   $('<div>').attr('id', 'console-width').appendTo($console);
@@ -10,7 +11,9 @@ jQuery(($) => {
   $('<div>').addClass('xl-only').text('media : xl').appendTo($console);
 
   $(window).on('load resize', () => {
-    $('#console-width').text(`width : ${$(window).width()}`);
-    $('#console-height').text(`height : ${$(window).height()}`);
+    const width:number|undefined = $(window).width();
+    const height:number|undefined = $(window).height();
+    $('#console-width').text(`width : ${width}`);
+    $('#console-height').text(`height : ${height}`);
   });
 });
