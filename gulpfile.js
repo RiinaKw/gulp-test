@@ -6,6 +6,7 @@ const pug = require('gulp-pug');
 // sass
 const sass = require('gulp-sass')(require('sass')); // sass コンパイラ
 const sourcemaps = require('gulp-sourcemaps'); // ***.css.map
+const autoprefixer = require('gulp-autoprefixer'); // ベンダープレフィックス
 
 // js
 const ts = require('gulp-typescript'); // TypeScript
@@ -100,6 +101,7 @@ const scssCompile = () => {
             outputStyle: 'expanded',
           }),
       ))
+      .pipe(autoprefixer())
       // ***.css.map を出力
       .pipe(sourcemaps.write('./maps'))
       // css を出力
