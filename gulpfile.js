@@ -7,6 +7,9 @@ const sourcemaps = require('gulp-sourcemaps')
 // pug
 const pug = require("gulp-pug")
 
+// 開発サーバ
+const browserSync = require('browser-sync')
+
 // その他
 const debug = require('gulp-debug')
 const plumber = require("gulp-plumber")
@@ -52,5 +55,26 @@ const scssCompile = () => {
 
 exports.pug = pugCompile
 exports.scss = scssCompile
+
+exports.serve = () => {
+    browserSync.init({
+        open: false,
+        startPath: '',
+        reloadDelay: 100,
+        once: true,
+        notify: true,
+        ghostMode: false,
+        server: {
+            baseDir: "dist/",
+        }
+    })
+
+    gulp.watch('src/**/*', { usePolling: true })
+        .on('change', gulp.series(
+            pugCompile,
+            scssCompile,
+            () => {browserSync.reload()}
+        ))
+}
 
 exports.default = gulp.parallel(pugCompile, scssCompile)
