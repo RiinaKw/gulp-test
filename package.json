@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "npx gulp --env production",
+    "dev": "npx gulp --env development",
     "pug": "npx gulp pug",
     "scss": "npx gulp scss",
     "serve": "npx gulp serve"
@@ -30,6 +32,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
+    "minimist": "^1.2.8",
     "sass": "^1.59.3"
   }
 }

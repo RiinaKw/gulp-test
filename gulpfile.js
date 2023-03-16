@@ -15,6 +15,7 @@ const rename = require('gulp-rename')   // ファイルのリネーム
 const browserSync = require('browser-sync')
 
 // その他
+const minimist = require('minimist')    // 引数解析
 const debug = require('gulp-debug')     // デバッグログ
 const plumber = require('gulp-plumber') // デスクトップ通知
 const notify = require('gulp-notify')
@@ -32,6 +33,24 @@ const paths = {
         js: 'dist/js',
     }
 }
+
+/**
+ * 環境切り替え
+ */
+const options = minimist(process.argv.slice(2), {
+    string: 'env',
+    default: {
+        env: 'development'
+    }
+})
+
+console.log("\x1b[36m")
+console.log("****************")
+console.log("*")
+console.info(`* mode : ${options.env}`)
+console.log("*")
+console.log("****************")
+console.log("\x1b[0m")
 
 /**
  * pug をコンパイル
