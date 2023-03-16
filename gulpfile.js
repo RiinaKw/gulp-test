@@ -76,6 +76,8 @@ const scssCompile = () => {
  */
 const jsMinify = () => {
     return gulp.src(paths.src.js)
+        // エラーが起きたときにデスクトップへ通知する
+        .pipe(plumber(notify.onError('Error: <%= error.message %>')))
         // 圧縮
         .pipe(uglify())
         // ***.min.js にリネーム
