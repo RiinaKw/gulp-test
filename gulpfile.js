@@ -108,4 +108,4 @@ exports.serve = () => {
         ))
 }
 
-exports.default = gulp.parallel(pugCompile, scssCompile)
+exports.default = gulp.parallel(pugCompile, scssCompile, jsMinify)
