@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "pug": "npx gulp pug",
     "scss": "npx gulp scss"
   },
   "repository": {
