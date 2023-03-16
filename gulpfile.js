@@ -8,9 +8,10 @@ const sass = require('gulp-sass')(require('sass'))  // sass コンパイラ
 const sourcemaps = require('gulp-sourcemaps')       // ***.css.map
 
 // js
-const ts = require('gulp-typescript') // TypeScript
-const uglify = require('gulp-uglify') // js の圧縮
-const rename = require('gulp-rename') // ファイルのリネーム
+const ts = require('gulp-typescript')   // TypeScript
+const eslint = require('gulp-eslint')   // 構文チェック
+const uglify = require('gulp-uglify')   // js の圧縮
+const rename = require('gulp-rename')   // ファイルのリネーム
 
 // 開発サーバ
 const browserSync = require('browser-sync')
@@ -109,6 +110,9 @@ const jsMinify = () => {
     return gulp.src(paths.src.js)
         // エラーが起きたときにデスクトップへ通知する
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
+        .pipe(eslint({useEslintrc: true}))
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
         // TypeScript をコンパイル
         .pipe(ts({
             esModuleInterop: true,
