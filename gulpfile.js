@@ -8,7 +8,7 @@ const debug = require('gulp-debug')
 const plumber = require("gulp-plumber")
 const notify = require("gulp-notify")
 
-exports.default = () => {
+const scssCompile = () => {
     return gulp.src('src/scss/**/*.{scss,css}')
         // エラーが起きたときにデスクトップへ通知する
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
@@ -26,3 +26,4 @@ exports.default = () => {
         .pipe(debug({ title: 'scss :' }))
 }
 
+exports.scss = scssCompile
