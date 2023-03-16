@@ -9,6 +9,7 @@
     "dev": "npx gulp --env development",
     "pug": "npx gulp pug",
     "scss": "npx gulp scss",
+    "js": "npx gulp js",
     "serve": "npx gulp serve"
   },
   "repository": {
