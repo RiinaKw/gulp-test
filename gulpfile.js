@@ -16,6 +16,7 @@ const browserSync = require('browser-sync')
 
 // その他
 const minimist = require('minimist')    // 引数解析
+var gulpif = require('gulp-if')         // 条件分岐を簡単にしてくれるやつ
 const debug = require('gulp-debug')     // デバッグログ
 const plumber = require('gulp-plumber') // デスクトップ通知
 const notify = require('gulp-notify')
@@ -78,10 +79,20 @@ const scssCompile = () => {
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
         // ***.css.map の準備
         .pipe(sourcemaps.init())
-        // コンパイル
-        .pipe(sass.sync({
-            outputStyle: 'expanded'
-        }))
+        // 本番環境の場合はコンパイル後に圧縮
+        .pipe(gulpif(
+            options.env === 'production',
+            sass.sync({
+                outputStyle: "compressed"
+            })
+        ))
+        // 開発環境の場合はコンパイルだけ
+        .pipe(gulpif(
+            options.env === 'development',
+            sass.sync({
+                outputStyle: "expanded"
+            })
+        ))
         // ***.css.map を出力
         .pipe(sourcemaps.write('./maps'))
         // css を出力
@@ -97,8 +108,11 @@ const jsMinify = () => {
     return gulp.src(paths.src.js)
         // エラーが起きたときにデスクトップへ通知する
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
-        // 圧縮
-        .pipe(uglify())
+        // 本番環境の場合は圧縮
+        .pipe(gulpif(
+            options.env === 'production',
+            uglify()
+        ))
         // ***.min.js にリネーム
         .pipe(rename({
             extname: '.min.js'
