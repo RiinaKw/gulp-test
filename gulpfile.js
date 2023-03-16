@@ -19,11 +19,25 @@ const debug = require('gulp-debug')
 const plumber = require("gulp-plumber")
 const notify = require("gulp-notify")
 
+// パスの設定
+const paths = {
+    'src': {
+        pug: 'src/pug/**/*.pug',
+        scss: 'src/scss/**/*.{scss,css}',
+        js: 'src/js/**/*.js',
+    },
+    'dist': {
+        pug: 'dist',
+        scss: 'dist/css',
+        js: 'dist/js',
+    }
+}
+
 /**
  * pug をコンパイル
  */
 const pugCompile = () => {
-    return gulp.src('src/pug/**/*.pug')
+    return gulp.src(paths.src.pug)
         // エラーが起きたときにデスクトップへ通知する
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
         // pug コンパイル
@@ -31,7 +45,7 @@ const pugCompile = () => {
             pretty: true
         }))
         // html を出力
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(paths.dist.pug))
         // ログ出力
         .pipe(debug({ title: 'pug :' }))
 }
@@ -40,7 +54,7 @@ const pugCompile = () => {
  * scss をコンパイル
  */
 const scssCompile = () => {
-    return gulp.src('src/scss/**/*.{scss,css}')
+    return gulp.src(paths.src.scss)
         // エラーが起きたときにデスクトップへ通知する
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
         // ***.css.map の準備
@@ -52,7 +66,7 @@ const scssCompile = () => {
         // ***.css.map を出力
         .pipe(sourcemaps.write('./maps'))
         // css を出力
-        .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest(paths.dist.scss))
         // ログ出力
         .pipe(debug({ title: 'scss :' }))
 }
@@ -61,7 +75,7 @@ const scssCompile = () => {
  * js を圧縮
  */
 const jsMinify = () => {
-    return gulp.src('src/js/**/*.js')
+    return gulp.src(paths.src.js)
         // 圧縮
         .pipe(uglify())
         // ***.min.js にリネーム
@@ -69,7 +83,7 @@ const jsMinify = () => {
             extname: '.min.js'
         }))
         // js を出力
-        .pipe(gulp.dest('dist/js'))
+        .pipe(gulp.dest(paths.dist.js))
         // ログ出力
         .pipe(debug({ title: 'js :' }))
 }
@@ -91,17 +105,17 @@ exports.serve = () => {
         }
     })
 
-    gulp.watch('src/pug/**/*', { usePolling: true })
+    gulp.watch(paths.src.pug, { usePolling: true })
         .on('change', gulp.series(
             pugCompile,
             () => {browserSync.reload()}
         ))
-    gulp.watch('src/scss/**/*', { usePolling: true })
+    gulp.watch(paths.src.scss, { usePolling: true })
         .on('change', gulp.series(
             scssCompile,
             () => {browserSync.reload()}
         ))
-    gulp.watch('src/js/**/*', { usePolling: true })
+    gulp.watch(paths.src.js, { usePolling: true })
         .on('change', gulp.series(
             jsMinify,
             () => {browserSync.reload()}
