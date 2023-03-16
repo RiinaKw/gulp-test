@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/RiinaKw/gulp-test/issues"
   },
-  "homepage": "https://github.com/RiinaKw/gulp-test#readme"
+  "homepage": "https://github.com/RiinaKw/gulp-test#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.59.3"
+  }
 }
