@@ -5,19 +5,19 @@ const sass = require('gulp-sass')(require('sass'))
 const sourcemaps = require('gulp-sourcemaps')
 
 // pug
-const pug = require("gulp-pug")
+const pug = require('gulp-pug')
 
 // 開発サーバ
 const browserSync = require('browser-sync')
 
 // js
-const uglify = require("gulp-uglify")   // js の圧縮
-const rename = require("gulp-rename")   // ファイルのリネーム
+const uglify = require('gulp-uglify')   // js の圧縮
+const rename = require('gulp-rename')   // ファイルのリネーム
 
 // その他
 const debug = require('gulp-debug')
-const plumber = require("gulp-plumber")
-const notify = require("gulp-notify")
+const plumber = require('gulp-plumber')
+const notify = require('gulp-notify')
 
 // パスの設定
 const paths = {
@@ -61,7 +61,7 @@ const scssCompile = () => {
         .pipe(sourcemaps.init())
         // コンパイル
         .pipe(sass.sync({
-            outputStyle: "expanded"
+            outputStyle: 'expanded'
         }))
         // ***.css.map を出力
         .pipe(sourcemaps.write('./maps'))
@@ -103,7 +103,7 @@ exports.serve = () => {
         notify: true,
         ghostMode: false,
         server: {
-            baseDir: "dist/",
+            baseDir: 'dist/',
         }
     })
 
