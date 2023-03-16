@@ -1,0 +1,11 @@
+
+
+.Article {
+    margin: 1rem;
+    border: solid 1px gray;
+    padding: 1rem;
+
+    &__Body {
+        margin-left: 1rem;
+    }
+}

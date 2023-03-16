@@ -19,15 +19,18 @@ html(lang="ja")
         header.Layout__Header
             h1 #{title}
         main.Layout__Main
-            .container
-                article
-                    h2 article 1
-                    .content this is the 1st article.
-                article
-                    h2 article 2
-                    .content this is the 2nd article.
-                article
-                    h2 article 3
-                    .content this is the 3rd article.
+            .ArticleList
+                article.ArticleList__Item
+                    .Article
+                        h2 article 1
+                        .Article__Body this is the 1st article.
+                article.ArticleList__Item
+                    .Article
+                        h2 article 2
+                        .Article__Body this is the 2nd article.
+                article.ArticleList__Item
+                    .Article
+                        h2 article 3
+                        .Article__Body this is the 3rd article.
         aside.Layout__SideBar aside
         footer.Layout__Footer footer
