@@ -4,10 +4,34 @@ const gulp = require('gulp')
 const sass = require('gulp-sass')(require('sass'))
 const sourcemaps = require('gulp-sourcemaps')
 
+// pug
+const pug = require("gulp-pug")
+
+// その他
 const debug = require('gulp-debug')
 const plumber = require("gulp-plumber")
 const notify = require("gulp-notify")
 
+/**
+ * pug をコンパイル
+ */
+const pugCompile = () => {
+    return gulp.src('src/pug/**/*.pug')
+        // エラーが起きたときにデスクトップへ通知する
+        .pipe(plumber(notify.onError('Error: <%= error.message %>')))
+        // pug コンパイル
+        .pipe(pug({
+            pretty: true
+        }))
+        // html を出力
+        .pipe(gulp.dest('dist'))
+        // ログ出力
+        .pipe(debug({ title: 'pug :' }))
+}
+
+/**
+ * scss をコンパイル
+ */
 const scssCompile = () => {
     return gulp.src('src/scss/**/*.{scss,css}')
         // エラーが起きたときにデスクトップへ通知する
@@ -26,4 +50,7 @@ const scssCompile = () => {
         .pipe(debug({ title: 'scss :' }))
 }
 
+exports.pug = pugCompile
 exports.scss = scssCompile
+
+exports.default = gulp.parallel(pugCompile, scssCompile)
