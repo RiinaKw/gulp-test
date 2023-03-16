@@ -140,17 +140,17 @@ exports.serve = () => {
         }
     })
 
-    gulp.watch(paths.src.pug, { usePolling: true })
+    gulp.watch(paths.src.pug, {usePolling: true})
         .on('change', gulp.series(
             pugCompile,
             () => {browserSync.reload()}
         ))
-    gulp.watch(paths.src.scss, { usePolling: true })
+    gulp.watch(paths.src.scss, {usePolling: true})
         .on('change', gulp.series(
             scssCompile,
             () => {browserSync.reload()}
         ))
-    gulp.watch(paths.src.js, { usePolling: true })
+    gulp.watch(paths.src.js, {usePolling: true})
         .on('change', gulp.series(
             jsMinify,
             () => {browserSync.reload()}
