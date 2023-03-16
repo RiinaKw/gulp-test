@@ -53,8 +53,18 @@ const scssCompile = () => {
         .pipe(debug({ title: 'scss :' }))
 }
 
+/**
+ * js を圧縮
+ */
+const jsMinify = () => {
+    return gulp.src('src/js/**/*.js')
+        .pipe(gulp.dest('dist/js'))
+        .pipe(debug({ title: 'js :' }))
+}
+
 exports.pug = pugCompile
 exports.scss = scssCompile
+exports.js = jsMinify
 
 exports.serve = () => {
     browserSync.init({

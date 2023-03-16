@@ -41,3 +41,57 @@ $breakpoint_list: (
 @function px($value, $sign:1) {
     @return $sign * $value + px;
 }
+
+// 特定のサイズのときのみ表示するもの
+
+.xs-only {
+    display: block;
+
+    @include query(sm) {
+        display: none;
+    }
+}
+
+.sm-only {
+    display: none;
+
+    @include query(sm) {
+        display: block;
+    }
+
+    @include query(md) {
+        display: none;
+    }
+}
+
+.md-only {
+    display: none;
+
+    @include query(md) {
+        display: block;
+    }
+
+    @include query(lg) {
+        display: none;
+    }
+}
+
+.lg-only {
+    display: none;
+
+    @include query(lg) {
+        display: block;
+    }
+
+    @include query(xl) {
+        display: none;
+    }
+}
+
+.xl-only {
+    display: none;
+
+    @include query(xl) {
+        display: block;
+    }
+}
