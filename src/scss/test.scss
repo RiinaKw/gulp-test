@@ -1,10 +1,14 @@
+@use "base/media";
 
-div {
-    h1 {
-        font-size: 2rem;
-    }
+body {
+    margin: 0;
+}
 
-    span {
-        background-color: pink;
+h1 {
+    font-size: 1.5rem;
+    margin: 0 0 0 1rem;
+
+    @include media.query(md) {
+        font-size: 1.25rem;
     }
 }

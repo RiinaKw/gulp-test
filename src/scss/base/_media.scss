@@ -1,0 +1,43 @@
+
+// ブレークポイントの配列
+$breakpoint_list: (
+    "xs": 0,
+    "sm": 480,
+    "md": 768,
+    "lg": 1200,
+    "xl": 1500,
+);
+
+// ブレークポイントの数値を取得
+@function breakpoint($breakpoint) {
+  @return map-get($breakpoint_list, $breakpoint);
+}
+
+// メディアクエリ
+@mixin query($breakpoint: md) {
+    $query: "screen and (min-width: " + breakpoint($breakpoint) + "px)";
+    @media #{$query} {
+        @content;
+    }
+}
+
+// ブレークポイントを基準にピクセルを vw に変換して出力
+@function vw($breakpoint, $value, $sign:1) {
+    @return $sign * $value / breakpoint($breakpoint) * 100 + vw;
+}
+
+// 各ブレークポイントの vw 変換
+@function sm($value, $sign:1) {
+    @return vw(sm, $value, $sign);
+}
+@function md($value, $sign:1) {
+    @return vw(md, $value, $sign);
+}
+@function lg($value, $sign:1) {
+    @return vw(lg, $value, $sign);
+}
+
+// 単純にピクセルで出力
+@function px($value, $sign:1) {
+    @return $sign * $value + px;
+}
