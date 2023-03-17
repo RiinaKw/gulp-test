@@ -10,6 +10,7 @@
     "pug": "npx gulp pug",
     "scss": "npx gulp scss",
     "js": "npx gulp js",
+    "vendor": "npx gulp vendor",
     "serve": "npx gulp serve"
   },
   "repository": {

@@ -11,3 +11,7 @@ exports.js = {
   src: 'src/js/**/*.{ts,js}',
   dist: 'dist/js',
 };
+exports.vendor = {
+  src: 'src/vendor/**/*',
+  dist: 'dist/vendor',
+};
