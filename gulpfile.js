@@ -25,18 +25,7 @@ const plumber = require('gulp-plumber'); // デスクトップ通知
 const notify = require('gulp-notify');
 
 // パスの設定
-const paths = {
-  'src': {
-    pug: 'src/pug/**/*.pug',
-    scss: 'src/scss/**/*.{scss,css}',
-    js: 'src/js/**/*.{ts,js}',
-  },
-  'dist': {
-    pug: 'dist',
-    scss: 'dist/css',
-    js: 'dist/js',
-  },
-};
+const paths = require('./gulpfile/paths');
 
 /**
  * 環境切り替え
@@ -62,7 +51,7 @@ console.log('\x1b[0m');
  * @return {gulp}
  */
 const pugCompile = () => {
-  return gulp.src(paths.src.pug)
+  return gulp.src(paths.pug.src)
   // エラーが起きたときにデスクトップへ通知する
       .pipe(plumber(notify.onError('Error: <%= error.message %>')))
       // pug コンパイル
@@ -70,7 +59,7 @@ const pugCompile = () => {
         pretty: true,
       }))
       // html を出力
-      .pipe(gulp.dest(paths.dist.pug))
+      .pipe(gulp.dest(paths.pug.dist))
       // ログ出力
       .pipe(debug({title: 'pug :'}))
   ;
@@ -82,7 +71,7 @@ const pugCompile = () => {
  * @return {gulp}
  */
 const scssCompile = () => {
-  return gulp.src(paths.src.scss)
+  return gulp.src(paths.scss.src)
       // エラーが起きたときにデスクトップへ通知する
       .pipe(plumber(notify.onError('Error: <%= error.message %>')))
       // ***.css.map の準備
@@ -106,7 +95,7 @@ const scssCompile = () => {
       // ***.css.map を出力
       .pipe(sourcemaps.write('./maps'))
       // css を出力
-      .pipe(gulp.dest(paths.dist.scss))
+      .pipe(gulp.dest(paths.scss.dist))
       // ログ出力
       .pipe(debug({title: 'scss :'}))
   ;
@@ -118,7 +107,7 @@ const scssCompile = () => {
  * @return {gulp}
  */
 const jsMinify = () => {
-  return gulp.src(paths.src.js)
+  return gulp.src(paths.js.src)
       // エラーが起きたときにデスクトップへ通知する
       .pipe(plumber(notify.onError('Error: <%= error.message %>')))
       .pipe(eslint({useEslintrc: true}))
@@ -139,7 +128,7 @@ const jsMinify = () => {
         extname: '.min.js',
       }))
       // js を出力
-      .pipe(gulp.dest(paths.dist.js))
+      .pipe(gulp.dest(paths.js.dist))
       // ログ出力
       .pipe(debug({title: 'js :'}))
   ;
