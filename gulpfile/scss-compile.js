@@ -13,7 +13,7 @@ const notify = require('gulp-notify');
 const paths = require('./paths');
 
 // コマンドの引数
-const arguments = require('./arguments');
+const arguments = require('./arguments').default;
 
 /**
  * scss をコンパイル
