@@ -18,7 +18,6 @@ const rename = require('gulp-rename'); // ファイルのリネーム
 const browserSync = require('browser-sync');
 
 // その他
-const minimist = require('minimist'); // 引数解析
 const gulpif = require('gulp-if'); // 条件分岐を簡単にしてくれるやつ
 const debug = require('gulp-debug'); // デバッグログ
 const plumber = require('gulp-plumber'); // デスクトップ通知
@@ -27,20 +26,13 @@ const notify = require('gulp-notify');
 // パスの設定
 const paths = require('./gulpfile/paths');
 
-/**
- * 環境切り替え
- */
-const options = minimist(process.argv.slice(2), {
-  string: 'env',
-  default: {
-    env: 'development',
-  },
-});
+// 引数の読み込み
+const arguments = require('./gulpfile/arguments').default;
 
 console.log('\x1b[36m');
 console.log('****************');
 console.log('*');
-console.info(`* mode : ${options.env}`);
+console.info(`* mode : ${arguments.env}`);
 console.log('*');
 console.log('****************');
 console.log('\x1b[0m');
@@ -78,14 +70,14 @@ const scssCompile = () => {
       .pipe(sourcemaps.init())
       // 本番環境の場合はコンパイル後に圧縮
       .pipe(gulpif(
-          options.env === 'production',
+          arguments.env === 'production',
           sass.sync({
             outputStyle: 'compressed',
           }),
       ))
       // 開発環境の場合はコンパイルだけ
       .pipe(gulpif(
-          options.env === 'development',
+          arguments.env === 'development',
           sass.sync({
             outputStyle: 'expanded',
           }),
@@ -120,7 +112,7 @@ const jsMinify = () => {
       }))
       // 本番環境の場合は圧縮
       .pipe(gulpif(
-          options.env === 'production',
+          arguments.env === 'production',
           uglify(),
       ))
       // ***.min.js にリネーム
