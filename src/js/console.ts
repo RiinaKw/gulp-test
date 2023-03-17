@@ -15,5 +15,5 @@ jQuery(($) => {
     const height:number|undefined = $(window).height();
     $('#console-width').text(`width : ${width}`);
     $('#console-height').text(`height : ${height}`);
-  });
+  }).trigger('resize');
 });
