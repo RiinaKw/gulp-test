@@ -13,7 +13,7 @@ const notify = require('gulp-notify');
 const paths = require('./paths');
 
 // コマンドの引数
-const arguments = require('./arguments').default;
+const arguments = require('./arguments');
 
 /**
  * scss をコンパイル
@@ -50,4 +50,4 @@ const scssCompile = () => {
       .pipe(debug({title: 'scss :'}))
   ;
 };
-exports.default = scssCompile;
+module.exports = scssCompile;

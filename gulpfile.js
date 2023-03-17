@@ -7,7 +7,7 @@ const browserSync = require('browser-sync');
 const paths = require('./gulpfile/paths');
 
 // 引数の読み込み
-const arguments = require('./gulpfile/arguments').default;
+const arguments = require('./gulpfile/arguments');
 
 console.log('\x1b[36m');
 console.log('****************');
@@ -17,9 +17,9 @@ console.log('*');
 console.log('****************');
 console.log('\x1b[0m');
 
-const pugCompile = require('./gulpfile/pug-compile').default;
-const scssCompile = require('./gulpfile/scss-compile').default;
-const jsMinify = require('./gulpfile/js-minify').default;
+const pugCompile = require('./gulpfile/pug-compile');
+const scssCompile = require('./gulpfile/scss-compile');
+const jsMinify = require('./gulpfile/js-minify');
 
 exports.pug = pugCompile;
 exports.scss = scssCompile;

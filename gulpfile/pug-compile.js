@@ -28,4 +28,4 @@ const pugCompile = () => {
       .pipe(debug({title: 'pug :'}))
   ;
 };
-exports.default = pugCompile;
+module.exports = pugCompile;

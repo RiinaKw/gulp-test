@@ -14,7 +14,7 @@ const notify = require('gulp-notify');
 const paths = require('./paths');
 
 // コマンドの引数
-const arguments = require('./arguments').default;
+const arguments = require('./arguments');
 
 /**
  * js を圧縮
@@ -48,4 +48,4 @@ const jsMinify = () => {
       .pipe(debug({title: 'js :'}))
   ;
 };
-exports.default = jsMinify;
+module.exports = jsMinify;
