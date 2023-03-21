@@ -17,12 +17,12 @@ const paths = require('./paths');
 const arguments = require('./arguments');
 
 /**
- * js を圧縮
+ * TypeScript をコンパイル
  *
  * @return {gulp}
  */
-const jsMinify = () => {
-  return gulp.src(paths.js.src)
+const tsCompile = () => {
+  return gulp.src(paths.ts.src)
       // エラーが起きたときにデスクトップへ通知する
       .pipe(plumber(notify.onError('Error: <%= error.message %>')))
       .pipe(eslint({useEslintrc: true}))
@@ -43,9 +43,9 @@ const jsMinify = () => {
         extname: '.min.js',
       }))
       // js を出力
-      .pipe(gulp.dest(paths.js.dist))
+      .pipe(gulp.dest(paths.ts.dist))
       // ログ出力
-      .pipe(debug({title: 'js :'}))
+      .pipe(debug({title: 'ts :'}))
   ;
 };
-module.exports = jsMinify;
+module.exports = tsCompile;

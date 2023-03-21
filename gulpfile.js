@@ -19,12 +19,12 @@ console.log('\x1b[0m');
 
 const pugCompile = require('./gulpfile/pug-compile');
 const scssCompile = require('./gulpfile/scss-compile');
-const jsMinify = require('./gulpfile/js-minify');
+const tsCompile = require('./gulpfile/typescript-compile');
 const vendorCopy = require('./gulpfile/vendor-copy');
 
 exports.pug = pugCompile;
 exports.scss = scssCompile;
-exports.js = jsMinify;
+exports.ts = tsCompile;
 exports.vendor = vendorCopy;
 
 exports.serve = () => {
@@ -54,9 +54,9 @@ exports.serve = () => {
             browserSync.reload();
           },
       ));
-  gulp.watch(paths.js.src, {usePolling: true})
+  gulp.watch(paths.ts.src, {usePolling: true})
       .on('change', gulp.series(
-          jsMinify,
+          tsCompile,
           () => {
             browserSync.reload();
           },
@@ -70,4 +70,4 @@ exports.serve = () => {
       ));
 };
 
-exports.default = gulp.parallel(pugCompile, scssCompile, jsMinify, vendorCopy);
+exports.default = gulp.parallel(pugCompile, scssCompile, tsCompile, vendorCopy);
