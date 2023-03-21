@@ -40,28 +40,28 @@ exports.serve = () => {
     },
   });
 
-  gulp.watch(paths.src.pug, {usePolling: true})
+  gulp.watch(paths.pug.src, {usePolling: true})
       .on('change', gulp.series(
           pugCompile,
           () => {
             browserSync.reload();
           },
       ));
-  gulp.watch(paths.src.scss, {usePolling: true})
+  gulp.watch(paths.scss.src, {usePolling: true})
       .on('change', gulp.series(
           scssCompile,
           () => {
             browserSync.reload();
           },
       ));
-  gulp.watch(paths.src.js, {usePolling: true})
+  gulp.watch(paths.js.src, {usePolling: true})
       .on('change', gulp.series(
           tsCompile,
           () => {
             browserSync.reload();
           },
       ));
-  gulp.watch(paths.src.vendor, {usePolling: true})
+  gulp.watch(paths.vendor.src, {usePolling: true})
       .on('change', gulp.series(
           vendorCopy,
           () => {
