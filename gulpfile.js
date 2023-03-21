@@ -54,7 +54,7 @@ exports.serve = () => {
             browserSync.reload();
           },
       ));
-  gulp.watch(paths.js.src, {usePolling: true})
+  gulp.watch(paths.ts.src, {usePolling: true})
       .on('change', gulp.series(
           tsCompile,
           () => {

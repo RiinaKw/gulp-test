@@ -22,7 +22,7 @@ const arguments = require('./arguments');
  * @return {gulp}
  */
 const tsCompile = () => {
-  return gulp.src(paths.js.src)
+  return gulp.src(paths.ts.src)
       // エラーが起きたときにデスクトップへ通知する
       .pipe(plumber(notify.onError('Error: <%= error.message %>')))
       .pipe(eslint({useEslintrc: true}))
@@ -43,9 +43,9 @@ const tsCompile = () => {
         extname: '.min.js',
       }))
       // js を出力
-      .pipe(gulp.dest(paths.js.dist))
+      .pipe(gulp.dest(paths.ts.dist))
       // ログ出力
-      .pipe(debug({title: 'js :'}))
+      .pipe(debug({title: 'ts :'}))
   ;
 };
 module.exports = tsCompile;

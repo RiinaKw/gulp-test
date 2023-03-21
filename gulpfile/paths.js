@@ -7,8 +7,8 @@ exports.scss = {
   src: 'src/scss/**/*.{scss,css}',
   dist: 'dist/css',
 };
-exports.js = {
-  src: 'src/js/**/*.{ts,js}',
+exports.ts = {
+  src: 'src/ts/**/*.{ts,js}',
   dist: 'dist/js',
 };
 exports.vendor = {
