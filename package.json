@@ -9,7 +9,7 @@
     "dev": "npx gulp --env development",
     "pug": "npx gulp pug",
     "scss": "npx gulp scss",
-    "js": "npx gulp js",
+    "ts": "npx gulp ts",
     "vendor": "npx gulp vendor",
     "serve": "npx gulp serve"
   },

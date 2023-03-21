@@ -24,7 +24,7 @@ const vendorCopy = require('./gulpfile/vendor-copy');
 
 exports.pug = pugCompile;
 exports.scss = scssCompile;
-exports.js = tsCompile;
+exports.ts = tsCompile;
 exports.vendor = vendorCopy;
 
 exports.serve = () => {
