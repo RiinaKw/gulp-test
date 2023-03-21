@@ -17,11 +17,11 @@ const paths = require('./paths');
 const arguments = require('./arguments');
 
 /**
- * js を圧縮
+ * TypeScript をコンパイル
  *
  * @return {gulp}
  */
-const jsMinify = () => {
+const tsCompile = () => {
   return gulp.src(paths.js.src)
       // エラーが起きたときにデスクトップへ通知する
       .pipe(plumber(notify.onError('Error: <%= error.message %>')))
@@ -48,4 +48,4 @@ const jsMinify = () => {
       .pipe(debug({title: 'js :'}))
   ;
 };
-module.exports = jsMinify;
+module.exports = tsCompile;
