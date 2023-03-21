@@ -7,10 +7,6 @@ gulp についての**個人的な学習の範疇**であることにご注意�
 
 ## コマンド
 
-* `npm run dev`  
-  ブラウザで使用できる形式に各種ファイルを変換します。
-* `npm run prod`  
-  上記変換に加えて、css と js を圧縮します。
 * `npm run pug`  
   pug ファイルを html に変換します。
 * `npm run scss`  
@@ -19,6 +15,10 @@ gulp についての**個人的な学習の範疇**であることにご注意�
   TypeScript ファイルを JavaScript に変換します。
 * `npm run vendor`  
   今回の変換対象ではないファイルをそのままコピーします。
+* `npm run dev`  
+  上記4つの変換を同時に行ないます。
+* `npm run prod`  
+  上記変換にさらに加えて、css と js を圧縮します。
 * `npm run serve`  
   開発サーバを立ち上げ、ファイルの変更を監視し、ブラウザを自動更新します。
 
@@ -26,20 +26,20 @@ gulp についての**個人的な学習の範疇**であることにご注意�
 
 ### HTML
 
-pug ファイルを html に変換します。
+pug ファイルを html にコンパイルします。
 
 `src/pug/***.pug` → `dist/***.html`
 
 ### CSS
 
-scss ファイルを css に変換します。
+scss ファイルを css にコンパイルします。
 オプションによって圧縮も行ないます。
 
 `src/scss/***.scss` → `dist/css/***.html`
 
 ### JavaScript
 
-TypeScript ファイルを JavaScript に変換します。
+TypeScript ファイルを JavaScript にコンパイルします。
 オプションによって圧縮も行ないます。
 
 `src/ts/***.ts` → `dist/css/***.min.js`
@@ -49,6 +49,23 @@ TypeScript ファイルを JavaScript に変換します。
 単純にファイルをコピーします。
 
 `src/vendor/***` → `dist/vendor/***`
+
+## サンプルとして使用したファイルの簡単な説明
+
+### `src/pug/index.pug`
+
+pug 形式で記述された簡単な HTML レイアウトです。
+クラス名の規則には BEM を採用しています。
+
+### `src/scss/index.scss`
+
+なんとなくそれっぽい表示レイアウトにします。
+480px, 768px, 1200px, 1500px にブレークポイントがあり、レスポンシブに対応しています。
+
+### `src/ts/console.ts`
+
+ブラウザの右下に簡易的なデバッグコンソールを表示します。
+画面の幅・高さ・現在適用されているメディアクエリが表示されます。
 
 ## 開発サーバによるファイル変更監視について
 
