@@ -1,4 +1,5 @@
 
+// 各種ファイルの変換元・変換先の定義
 exports.pug = {
   src: 'src/pug/**/*.pug',
   dist: 'dist',

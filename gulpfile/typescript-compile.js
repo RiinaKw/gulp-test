@@ -26,6 +26,7 @@ const tsCompile = () => {
       // エラーが起きたときにデスクトップへ通知する
       .pipe(plumber(notify.onError('Error: <%= error.message %>')))
       .pipe(eslint({useEslintrc: true}))
+      // 構文チェック
       .pipe(eslint.format())
       .pipe(eslint.failAfterError())
       // TypeScript をコンパイル

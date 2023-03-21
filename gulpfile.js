@@ -9,6 +9,7 @@ const paths = require('./gulpfile/paths');
 // 引数の読み込み
 const arguments = require('./gulpfile/arguments');
 
+// 動作している環境変数を表示
 console.log('\x1b[36m');
 console.log('****************');
 console.log('*');
@@ -17,6 +18,7 @@ console.log('*');
 console.log('****************');
 console.log('\x1b[0m');
 
+// 4つのメインコマンド
 const pugCompile = require('./gulpfile/pug-compile');
 const scssCompile = require('./gulpfile/scss-compile');
 const tsCompile = require('./gulpfile/typescript-compile');
@@ -27,6 +29,7 @@ exports.scss = scssCompile;
 exports.ts = tsCompile;
 exports.vendor = vendorCopy;
 
+// ファイル更新を監視してブラウザをリロード
 exports.serve = () => {
   browserSync.init({
     open: false,
@@ -40,6 +43,7 @@ exports.serve = () => {
     },
   });
 
+  // pug が更新されたら HTML にコンパイル
   gulp.watch(paths.pug.src, {usePolling: true})
       .on('change', gulp.series(
           pugCompile,
@@ -47,6 +51,8 @@ exports.serve = () => {
             browserSync.reload();
           },
       ));
+
+  // scss が更新されたら css にコンパイル
   gulp.watch(paths.scss.src, {usePolling: true})
       .on('change', gulp.series(
           scssCompile,
@@ -54,6 +60,8 @@ exports.serve = () => {
             browserSync.reload();
           },
       ));
+
+  // ts が更新されたら js にコンパイル
   gulp.watch(paths.ts.src, {usePolling: true})
       .on('change', gulp.series(
           tsCompile,
@@ -61,6 +69,8 @@ exports.serve = () => {
             browserSync.reload();
           },
       ));
+
+  // vendor が更新されたらファイルをコピー
   gulp.watch(paths.vendor.src, {usePolling: true})
       .on('change', gulp.series(
           vendorCopy,
@@ -70,4 +80,5 @@ exports.serve = () => {
       ));
 };
 
+// デフォルトコマンドは4種変換を非同期で行なう
 exports.default = gulp.parallel(pugCompile, scssCompile, tsCompile, vendorCopy);
